@@ -8,9 +8,10 @@ my_parser = parser.Parser("./input.txt")
 plt.show()
 plt.ion()
 fig = plt.figure()
-for i in range(10850):
-    my_parser.update_list()
 iteration = 10850
+for i in range(iteration):
+    my_parser.update_list()
+
 while 1:
     plt.clf()
     x = my_parser.x_list
@@ -19,5 +20,8 @@ while 1:
 
     fig.canvas.draw()
     fig.canvas.flush_events()
-    my_parser.update_list()
+
     input("Press Enter to continue...")
+    my_parser.update_list()
+    iteration += 1
+    print(iteration)
