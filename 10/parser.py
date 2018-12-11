@@ -23,14 +23,8 @@ class Parser:
 
         for i in self.file_content:
             ints_list = [int(d) for d in re.findall(r'-?\d+', i)]
-            if ints_list[0] > 0:
-                x_list.append(int(ints_list[0]))
-            else:
-                x_list.append(int(ints_list[0]))
-            if ints_list[1] > 0:
-                y_list.append(int(ints_list[1]))
-            else:
-                y_list.append(int(ints_list[1]))
+            x_list.append(int(ints_list[0]))
+            y_list.append(int(ints_list[1]))
             x_speed.append(int(ints_list[2]))
             y_speed.append(int(ints_list[3]))
         return x_list, y_list, x_speed, y_speed

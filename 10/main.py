@@ -1,8 +1,5 @@
 import parser
-import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib import interactive
-import time
 
 my_parser = parser.Parser("./input.txt")
 plt.show()
