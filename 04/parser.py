@@ -7,7 +7,7 @@ class Parser:
         self.file_path = path
         self.file_content = self.open_file()
         self.logs = self.parse_content()
-        self.guard_list = self.process_logs()
+        self.guard_dict = self.process_logs()
 
     def open_file(self):
         try:
@@ -29,29 +29,25 @@ class Parser:
         return file_content
 
     def process_logs(self):
-        guard_list = []
+        guard_dict = {}
+        current_guard = None
+        [print(str(x).zfill(2), end=' ') for x in range(0, 60)]
+        print()
         for log in self.logs:
-            if '#' in log:
-                print("coucou")
-        # guard_list = []
-        # current_guard = None
-        # working = False
-        #
-        #
-        # for log in self.file_content:
-        #     time_date, message = log[:19], log[19:].split()
-        #     guard_id = [x[1:] for x in message if x[0] == '#']
-        #     if not guard_id:
-        #         print("no id")
-        #     else:
-        #         guard_id_single = int(guard_id[0])
-        #         try:
-        #             current_guard = guard_list[guard_id_single]
-        #         except IndexError:
-        #             guard_list.append({
-        #                 'id': guard_id_single,
-        #                 'guard': guard.Guard
-        #             })
-        #             current_guard = next(item for item in guard_list if item['id'] == guard_id_single)
-        #
-        return guard_list
+            if log['message'][0] == 'Guard':
+                guard_id = log['message'][1][1:]
+                try:
+                    current_guard = guard_dict[guard_id]
+                except KeyError:
+                    guard_dict[guard_id] = guard.Guard(guard_id)
+                    current_guard = guard_dict[guard_id]
+            elif log['message'][0] == 'falls':
+                current_guard.sleep_start = log['timestamp']
+            elif log['message'][0] == 'wakes':
+                current_guard.update_minute_list(log['timestamp'])
+                if current_guard is not None and current_guard.guard_id == '239':
+                    current_guard.update_minute_list(log['timestamp'], True)
+        print()
+        [print(str(x).zfill(2), end=' ') for x in guard_dict['239'].minute_list]
+        print()
+        return guard_dict
