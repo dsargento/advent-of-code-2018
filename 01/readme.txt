@@ -7,3 +7,7 @@ Part 2 explanation:
 
 We have to find the first repetition, to do that we repeat the sequence until the values matches one stored in the
 history (it takes a while)
+
+Part 2 update:
+
+Replaced the history dict by a set, since sets lookups are much faster, and we dont need to use key/value pairs

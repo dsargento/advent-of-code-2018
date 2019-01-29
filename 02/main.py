@@ -23,12 +23,15 @@ for line in my_parser.lines:
         three_letters += 1
 
 print(two_letters * three_letters)
-for line_index, line_value in enumerate(my_parser.lines):
-    for index in range(len(my_parser.lines)):
-        if my_parser.lines[index] == my_parser.lines[index] and index != line_index:
-            char_count = 0
-            for char_index, char in enumerate(my_parser.lines[index]):
-                if line_value[char_index] == char:
-                    char_count += 1
-            if char_count == (len(line_value) - 1):
-                print(line_value)
+# for line_index, line_value in enumerate(my_parser.lines):
+#     for index in range(len(my_parser.lines)):
+#         if my_parser.lines[index] == my_parser.lines[index] and index != line_index:
+#             char_count = 0
+#             for char_index, char in enumerate(my_parser.lines[index]):
+#                 try:
+#                     if line_value[char_index] == char:
+#                         char_count += 1
+#                 except IndexError:
+#                     continue
+#             if char_count == (len(line_value) - 1):
+#                 print(line_value)

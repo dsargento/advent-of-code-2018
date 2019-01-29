@@ -4,7 +4,7 @@ import time
 my_parser = parser.Parser("./input.txt")
 count = 0
 found = 0
-history = []
+history = set()
 
 # While no duplicate is found
 while found == 0:
@@ -18,7 +18,7 @@ while found == 0:
             found = 1
             break
         # Append the current count to the history
-        history.append(count)
+        history.add(count)
 
 print(history)
 print(count)
